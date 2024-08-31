@@ -1,0 +1,31 @@
+import streamlit as st
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# 데이터 준비 (공부 시간과 점수)
+data = {
+    'study_hours': [1, 2, 3, 4, 5, 6],
+    'scores': [50, 60, 70, 80, 90, 100]
+}
+
+# 데이터프레임 생성
+df = pd.DataFrame(data)
+
+# 선형 회귀 모델 훈련
+X = df[['study_hours']]
+y = df['scores']
+model = LinearRegression()
+model.fit(X, y)
+
+# Streamlit 앱 설정
+st.title("공부 시간에 따른 점수 예측기")
+
+# 사용자 입력
+study_hours = st.number_input("공부 시간을 입력하세요 (시간):", min_value=0.0, max_value=10.0, step=0.1)
+
+# 점수 예측
+predicted_score = model.predict(np.array([[study_hours]]))[0]
+
+# 결과 출력
+st.write(f"예상 점수: {predicted_score:.2f}")
