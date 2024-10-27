@@ -1,5 +1,4 @@
-# 스트림릿 app.py 파일 생성
-%%writefile app.py
+
 
 # streamlit 라이브러리 불러오기
 import streamlit as st
